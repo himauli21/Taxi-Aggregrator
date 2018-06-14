@@ -16,5 +16,5 @@ $data = $baseHelper->getLyft()->getCost( $start_lat = 43.761539 , $start_lng = â
 $baseHelper->printR( $data );
 
 // UBER work in progress
-$data = $baseHelper->getUber();
-$baseHelper->printR( $data );
+//$data = $baseHelper->getUber();
+//$baseHelper->printR( $data );
