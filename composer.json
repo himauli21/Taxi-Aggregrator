@@ -1,0 +1,25 @@
+{
+  "name": "Taxi",
+  "description": "online Taxi services content aggregator",
+  "keywords": ["php","taxi"],
+  "type": "project",
+  "license": "Proprietary",
+  "minimum-stability": "stable",
+  "require": {
+    "guzzlehttp/guzzle":"6.3.3",
+    "php": ">=5.6.19 <7.1",
+    "stevenmaguire/uber-php":"dev-master",
+    "league/oauth2-client":"2.3.0",
+    "google/apiclient":"2.0"
+  },
+  "config": {
+    "vendor-dir": "vendor",
+    "process-timeout": 1800
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}
