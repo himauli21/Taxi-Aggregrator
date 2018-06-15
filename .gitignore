@@ -17,3 +17,6 @@ vendor
 
 # Mac DS_Store Files
 .DS_Store
+
+# Mac DS_Store Files
+composer.phar

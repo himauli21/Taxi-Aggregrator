@@ -12,11 +12,14 @@ $baseHelper = new BaseHelper();
 //$baseHelper->printR( $data );
 
 // LYFT
-$data = $baseHelper->getLyft()->getCost( $start_lat = 43.761539 , $start_lng = ‎-79.411079 , $end_lat = 43.653908 , $end_lng =  ‎-79.384293 );
-$baseHelper->printR( $data );
+//$data = $baseHelper->getLyft()->getCost( $start_lat = 43.761539 , $start_lng = ‎-79.411079 , $end_lat = 43.653908 , $end_lng =  ‎-79.384293 );
+//$baseHelper->printR( $data );
 
 // UBER work in progress
 //$data = $baseHelper->getUber();
+//$baseHelper->printR( $data );
+
+//$data = $baseHelper->getGoogleLocationApi()->getLatAndLongByAddress('Lambton college,Sarnia,ON');
 //$baseHelper->printR( $data );
 
 ?>

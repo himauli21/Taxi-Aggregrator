@@ -19,7 +19,7 @@ class Ttc extends BaseHelper
         $res = $client->request('GET', self::$url.$stopId );
         if( $res->getStatusCode() == 200 ){
             $data = $res->getBody()->getContents();
-            return $this->parseToArray( $data );
+            return $this->parseToArray($data);
         }
     }
 }

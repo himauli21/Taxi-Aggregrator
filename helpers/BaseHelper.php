@@ -8,7 +8,7 @@
 
 namespace helpers;
 
-use Stevenmaguire\Uber\Client;
+use GuzzleHttp\Client;
 
 class BaseHelper
 {
@@ -25,6 +25,15 @@ class BaseHelper
     }
 
     /**
+     * @return Client
+     */
+    public function getHttpClient(){
+        return  new Client(['defaults' => [
+            'verify' => false
+        ]]);
+    }
+
+    /**
      * @return Uber
      */
     public function getUber(){
@@ -33,6 +42,10 @@ class BaseHelper
 
     public function getLyft(){
         return new Lyft();
+    }
+
+    public function getGoogleLocationApi(){
+        return new GoogleLocationApi();
     }
 
     public function printR( $data , $exit = 1 ){

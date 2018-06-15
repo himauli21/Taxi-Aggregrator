@@ -92,15 +92,6 @@ class Lyft extends BaseHelper
         }
     }
 
-    /**
-     * @return Client
-     */
-    public function getHttpClient(){
-        return  new Client(['defaults' => [
-            'verify' => false
-        ]]);
-    }
-
     public function getRequestOptionsWithAccessToken(){
         $accessToken = $this->getAccessToken();
         return [
