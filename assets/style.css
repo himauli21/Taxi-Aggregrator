@@ -1,0 +1,118 @@
+.loadingBar
+{
+    background-color: white;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10000;
+}
+
+.loadingBarText
+{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 300px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #5577ff;
+    text-align: center;
+
+    -webkit-animation: myfirst 5s linear 2s infinite alternate; /* Chrome, Safari, Opera */
+    animation: myfirst 5s linear 2s infinite alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    0%   {color: #5577ff;}
+    20%  {color: #425dc8;}
+    50%  {color: #172346;}
+    80%  {color: #425dc8;}
+    100% {color: #5577ff;}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+    0%   {color: #5577ff;}
+    20%  {color: #425dc8;}
+    50%  {color: #172346;}
+    80%  {color: #425dc8;}
+    100% {color: #5577ff;}
+}
+
+
+body
+{
+    position: relative;
+    background-color: white;
+    font-family:'Lato', sans-serif;
+    color: #585858;
+    font-size: 14px;
+}
+
+.navbar.app{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.navbar.app.navbar-default .navbar-nav>li>a{
+    font-size: 20px;
+    color: white;
+    transition:400ms ease all;
+}
+
+.navbar.app.navbar-default .navbar-nav>li>a:hover{
+    font-size: 20px;
+    color: black;
+}
+
+
+.jumbotron.app{
+    background: rgba(240, 240, 240, 0.5);
+}
+
+button.find-rides{
+    background:#1AAB8A;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+}
+button.find-rides:hover{
+    background:#fff;
+    color:#1AAB8A;
+}
+button.find-rides .fa-location-arrow{
+    transition:800ms ease all;
+}
+button.find-rides:hover .fa-location-arrow{
+    transform: rotate(45deg);
+}
+button.find-rides:before,button.find-rides:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+}
+button.find-rides:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+button.find-rides:hover:before,button.find-rides:hover:after{
+    width:100%;
+    transition:800ms ease all;
+}

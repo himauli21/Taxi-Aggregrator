@@ -12,6 +12,22 @@ use GuzzleHttp\Client;
 
 class BaseHelper
 {
+    public static $errorArray = [] ;
+
+    public function getErrorArray(){
+        return self::$errorArray;
+    }
+
+    public function setErrorArray( $errorArray ){
+        self::$errorArray = $errorArray;
+    }
+
+    public function setErrorInErrorArray( $error ){
+        $errorArray = $this->getErrorArray();
+        $errorArray[] = $error;
+        $this->setErrorArray( $errorArray );
+    }
+
     public function getArrayHelper(){
         return new ArrayHelper();
     }
@@ -22,6 +38,10 @@ class BaseHelper
 
     public function getTtc(){
         return new Ttc();
+    }
+
+    public function getRequestHandler(){
+        return new RequestHandler();
     }
 
     /**

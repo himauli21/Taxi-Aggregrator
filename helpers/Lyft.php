@@ -129,8 +129,9 @@ class Lyft extends BaseHelper
             }else{
                 throw new ClientException( 400 , "Not able to connect to LYFT API." );
             }
-        }catch (Exception $e){
-            $this->printR( $e );
+        }catch (ClientException $e){
+            $this->printR( $e->getMessage() );
+            return false;
         }
     }
 }

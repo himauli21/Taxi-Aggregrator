@@ -13,6 +13,10 @@ class GoogleLocationApi extends BaseHelper
 {
     const API_KEY = "AIzaSyAVqXVxAvzzlgPKw7JA3_bMyTQZo0SAFQQ" ;
 
+
+    public static $lat = null ;
+    public static $lng = null ;
+
     public function getLatAndLongApiUrl( $address ){
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$address."=".self::API_KEY;
         return $url;
@@ -25,11 +29,22 @@ class GoogleLocationApi extends BaseHelper
             $res = $client->request('GET', $url );
             if( $res->getStatusCode() == 200 ){
                 $data = $res->getBody()->getContents();
-                return $this->parseToArray($data);
+                $data = $this->parseToArray($data);
+                return $this->getLatAndLang( $data );
             }
         }catch ( \Exception $e ){
             $this->printR( $e->getTraceAsString() );
         }
     }
+
+    public function getLatAndLang( $data ){
+        $latLangArray = ArrayHelper::getValue( $data , 'results.0.geometry.location' );
+        $latLangArray1 = $latLangArray ;
+        $latLangArray2 = $latLangArray ;
+        self::$lat = ArrayHelper::getValue( $latLangArray1 , 'lat' );
+        self::$lng = ArrayHelper::getValue( $latLangArray2 , 'lng' );
+        return $latLangArray;
+    }
+
 
 }

@@ -5,22 +5,17 @@ require 'base.php';
 use helpers\BaseHelper;
 
 $baseHelper = new BaseHelper();
+$data = [];
+$msg = null;
+try{
+    $data = $baseHelper->getRequestHandler()->handleRequest();
+}catch (Exception $e){
+    $msg = $e->getTraceAsString();
+}
 
-// TTC
-//http://www.ttc.ca/Routes/49/Eastbound.jsp stops list  14720 ==> Kipling Station
-//$data = $baseHelper->getTtc()->getCarsByStopId( 14720 );
-//$baseHelper->printR( $data );
+$from = \helpers\RequestHandler::$from;
+$to = \helpers\RequestHandler::$to;
 
-// LYFT
-//$data = $baseHelper->getLyft()->getCost( $start_lat = 43.761539 , $start_lng = ‎-79.411079 , $end_lat = 43.653908 , $end_lng =  ‎-79.384293 );
-//$baseHelper->printR( $data );
-
-// UBER work in progress
-//$data = $baseHelper->getUber();
-//$baseHelper->printR( $data );
-
-//$data = $baseHelper->getGoogleLocationApi()->getLatAndLongByAddress('Lambton college,Sarnia,ON');
-//$baseHelper->printR( $data );
 
 ?>
 
@@ -32,11 +27,6 @@ $baseHelper = new BaseHelper();
 
     <title>Ride Share</title>
 
-    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">-->
-    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
-
-    <link rel="script" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -46,17 +36,13 @@ $baseHelper = new BaseHelper();
     <link rel="stylesheet" href="assets/boxmodel.css">
     <link rel="stylesheet" href="assets/font.css">
     <link rel="stylesheet" href="assets/media.css">
+    <link rel="stylesheet" href="assets/style.css">
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 <body>
 
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top app">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -69,15 +55,14 @@ $baseHelper = new BaseHelper();
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Login</a></li>
                 <li><a href="#">Sign Up</a></li>
-
             </ul>
         </div>
     </div>
 </nav>
 
 
-<div class="container">
-    <section class="jumbotron text-center">
+<div class="container mt100 ">
+    <section class="jumbotron text-center app">
         <div class="container">
 
             <h1 class="jumbotron-heading">
@@ -87,55 +72,56 @@ $baseHelper = new BaseHelper();
 				</span>
             </h1>
 
-            <div class="row mt50">
-                <div class="col-xs-12 col-sm-6 text-center">
-                    <!--                    <input class="form-control" id="ex1" type="text" placeholder="From">-->
-                    <div class="input-group input-group-lg">
+            <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>" >
+                <div class="row mt50">
+                    <div class="col-xs-12 col-sm-6 text-center">
+                        <!--                    <input class="form-control" id="ex1" type="text" placeholder="From">-->
+                        <div class="input-group input-group-lg">
                           <span class="input-group-addon" id="sizing-addon1">
                               <i class="fas fa-map-marker">
 
                               </i>
                           </span>
-                        <input type="text" class="form-control" placeholder="From" aria-describedby="sizing-addon1">
+                            <input value="<?= $from; ?>" id="Location_from" name="Location[from]" type="text" class="form-control ac-input" placeholder="From" aria-describedby="sizing-addon1">
+                        </div>
+
                     </div>
 
-                </div>
+                    <div class="col-xs-12 col-sm-6 text-center">
 
-                <div class="col-xs-12 col-sm-6 text-center">
-
-                    <div class="input-group input-group-lg">
+                        <div class="input-group input-group-lg">
                               <span class="input-group-addon" id="sizing-addon1">
                                   <i class="fas fa-map-marker">
 
                                   </i>
                               </span>
-                        <input type="text" class="form-control" placeholder="To" aria-describedby="sizing-addon1">
+                            <input value="<?= $to; ?>" id="Location_to" name="Location[to]" type="text" class="form-control ac-input" placeholder="To" aria-describedby="sizing-addon1">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--            <nav class="level">-->
-            <!---->
-            <!--                <div class="form-group row">-->
-            <!--                    <div class="col-xs-2">-->
-            <!---->
-            <!--                    </div>-->
-            <!--                    <div class="col-xs-2">-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!---->
-            <!---->
-            <!--            </nav>-->
-
-            <div class="row">
-                <div class="col-xs-12 text-center mt50">
-                    <button type="button" class="btn btn-primary btn-lg pl50 pr50">Search Ride</button>
-
+                <div class="row">
+                    <div class="col-xs-12 text-center mt50">
+                        <button type="submit" class="find-rides pl50 pr50"><i class="fas fa-location-arrow" ></i>&nbsp;&nbsp;Search Ride</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
         </div>
 
 </div>
+
+<!-- GOOD PRACTICE PUT JS AT END -->
+<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js" ></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<script type="application/javascript" src="assets/app.js" ></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVqXVxAvzzlgPKw7JA3_bMyTQZo0SAFQQ&libraries=places&callback=initMap">
+</script>
 
 </body>
 </html>
