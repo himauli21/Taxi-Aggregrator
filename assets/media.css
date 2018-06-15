@@ -1,0 +1,177 @@
+@media(max-width:449px){
+
+    .colXS1
+    {
+        width : 8.33%;
+    }
+
+    .colXS2
+    {
+        width : 16.66%;
+    }
+
+    .colXS3
+    {
+        width : 25%;
+    }
+
+    .colXS4
+    {
+        width : 33.33%;
+    }
+
+    .colXS5
+    {
+        width : 41.66%;
+    }
+
+    .colXS6
+    {
+        width : 50%;
+    }
+
+    .colXS7
+    {
+        width : 58.33%;
+    }
+
+    .colXS8
+    {
+        width : 66.66%;
+    }
+
+    .colXS9
+    {
+        width : 75%;
+    }
+
+    .colXS10
+    {
+        width : 83.33%;
+    }
+
+    .colXS11
+    {
+        width : 91.66%;
+    }
+
+    .colXS12
+    {
+        width : 100%;
+    }
+
+    .hiddenXS
+    {
+        display: none;
+    }
+
+    .visibleXS
+    {
+        display: block;
+    }
+
+    #priceTable .colXS12
+    {
+        margin-bottom: 30px;
+    }
+
+    #mozzapBar .navbar-brand
+    {
+        padding: 10px 0px 10px 20px;
+        font-size: 30px;
+    }
+
+    #mozzapBar.hasSlider
+    {
+        background-color: white;
+    }
+
+    #serviceContainer .item
+    {
+        margin-bottom: 50px;
+    }
+}
+
+@media(min-width:450px){
+
+    .visibleXS
+    {
+        display: none;
+    }
+
+    .hiddenXS
+    {
+        display: block;
+    }
+
+    #priceTable .col-xs-6
+    {
+        margin-bottom: 30px;
+    }
+
+    #mozzapBar .navbar-brand
+    {
+        padding: 10px 0px 10px 20px;
+        font-size: 30px;
+    }
+
+    #mozzapBar.hasSlider
+    {
+        background-color: white;
+    }
+
+    #serviceContainer .item
+    {
+        margin-bottom: 50px;
+    }
+
+}
+
+@media(max-width:767px) and (min-width:450px){
+
+    #mozzapBar .navbar-brand
+    {
+        padding: 10px 0px 10px 20px;
+        font-size: 30px;
+    }
+
+    #mozzapBar.hasSlider
+    {
+        background-color: white;
+    }
+
+
+    #serviceContainer .item
+    {
+        margin-bottom: 50px;
+    }
+
+}
+
+@media(min-width:768px){
+    #mozzapBar .navbar-brand
+    {
+        padding: 20px 0px 20px 30px;
+        font-size: 30px;
+    }
+
+    #mozzapBar.hasSlider
+    {
+        background-color: white;
+    }
+
+
+
+}
+
+@media(min-width:992px){
+    #mozzapBar .navbar-brand
+    {
+        padding: 25px 0px 25px 50px;
+        font-size: 50px;
+    }
+}
+
+@media(min-width:1200px){
+
+}
