@@ -12,3 +12,5 @@ require 'helpers/Lyft.php';
 require 'helpers/GoogleLocationApi.php';
 require 'helpers/ContentAggregator.php';
 require 'helpers/RequestHandler.php';
+require 'helpers/FormModel.php';
+require 'helpers/FindRidesModel.php';

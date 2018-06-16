@@ -10,7 +10,7 @@
 $.backstretch([
     "assets/images/1.jpg"
     , "assets/images/2.jpg"
-], {duration: 3000, fade: 750});
+], {duration: 15000, fade: 5000});
 
 
 $(window).load(function(){
@@ -35,12 +35,16 @@ function hideLoadingBar()
 var map, infoWindow;
 function initMap() {
 
+    var options = {
+        componentRestrictions: {country: "ca"}
+    };
+
     var ac_inputs = document.getElementById('Location_from');
     var ac_inputs2 = document.getElementById('Location_to');
-    new google.maps.places.Autocomplete(ac_inputs);
-    new google.maps.places.Autocomplete(ac_inputs2);
+    new google.maps.places.Autocomplete(ac_inputs, options);
+    new google.maps.places.Autocomplete(ac_inputs2, options);
 
-    if( ac_inputs.val() == "" || ac_inputs.val() == null ){
+    if( ac_inputs.value == "" || ac_inputs.value == null ){
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -116,5 +120,14 @@ var options = {
     timeout: 1000,
     maximumAge: 0
 };
+
+$(document).ready(function() {
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
 
 

@@ -125,6 +125,7 @@ class Lyft extends BaseHelper
             if( $request->getStatusCode() == 200 ){
                 $data = $request->getBody()->getContents();
                 $data = $this->parseToArray( $data );
+                $data = ArrayHelper::getValue( $data , 'cost_estimates' );
                 return $data;
             }else{
                 throw new ClientException( 400 , "Not able to connect to LYFT API." );

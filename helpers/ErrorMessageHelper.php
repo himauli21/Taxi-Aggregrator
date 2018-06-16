@@ -12,9 +12,8 @@ namespace helpers;
 class ErrorMessageHelper extends BaseHelper
 {
     const FROM_NOT_DEFINED = "Start location can not be empty." ;
-    const FROM_IS_EMPTY = "SET USER FRIENDLY APPROPRIATE MESSAGE" ;
+    const FROM_IS_EMPTY = " FROM_IS_EMPTY SET USER FRIENDLY APPROPRIATE MESSAGE" ;
 
-
-    const TO_NOT_DEFINED = "Destination location can not be empty." ;
-    const TO_IS_EMPTY = "SET USER FRIENDLY APPROPRIATE MESSAGE" ;
+    const TO_NOT_DEFINED = " TO_NOT_DEFINED Destination location can not be empty." ;
+    const TO_IS_EMPTY = " TO_IS_EMPTY SET USER FRIENDLY APPROPRIATE MESSAGE" ;
 }

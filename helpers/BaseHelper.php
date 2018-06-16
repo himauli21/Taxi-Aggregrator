@@ -14,6 +14,10 @@ class BaseHelper
 {
     public static $errorArray = [] ;
 
+    public function printErrorArray(){
+        return $this->printR(self::$errorArray);
+    }
+
     public function getErrorArray(){
         return self::$errorArray;
     }
@@ -42,6 +46,10 @@ class BaseHelper
 
     public function getRequestHandler(){
         return new RequestHandler();
+    }
+
+    public function getFindRidesModel(){
+        return new FindRidesModel();
     }
 
     /**
