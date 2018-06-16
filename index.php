@@ -84,7 +84,7 @@ $baseHelper->printErrorArray()
                 <div class="row mt50">
                     <div class="col-xs-12 col-sm-6 text-center">
                         <!--                    <input class="form-control" id="ex1" type="text" placeholder="From">-->
-                        <div class="input-group input-group-lg">
+                        <div class="input-group input-group-lg app">
                           <span class="input-group-addon" id="sizing-addon1">
                               <i class="fas fa-map-marker">
 
@@ -97,7 +97,7 @@ $baseHelper->printErrorArray()
 
                     <div class="col-xs-12 col-sm-6 text-center">
 
-                        <div class="input-group input-group-lg">
+                        <div class="input-group input-group-lg app">
                               <span class="input-group-addon" id="sizing-addon1">
                                   <i class="fas fa-map-marker">
 
@@ -109,7 +109,10 @@ $baseHelper->printErrorArray()
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center mt50">
-                        <button type="submit" class="find-rides pl50 pr50"><i class="fas fa-location-arrow" ></i>&nbsp;&nbsp;Search Ride</button>
+                        <button type="submit" class="find-rides pl50 pr50">
+                            <i class="fas fa-location-arrow" ></i>&nbsp;&nbsp;
+                            Search Ride
+                        </button>
                     </div>
                 </div>
             </form>

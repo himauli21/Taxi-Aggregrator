@@ -82,7 +82,7 @@ body
 }
 
 button.find-rides{
-    background:#1AAB8A;
+    background: rgba(0, 0, 0, 0.70);
     color:#fff;
     border:none;
     position:relative;
@@ -95,13 +95,24 @@ button.find-rides{
 }
 button.find-rides:hover{
     background:#fff;
-    color:#1AAB8A;
+    color:#000000;
+
+    padding-left: 0.1em;
+    padding-right: 2.2em;
+
 }
+
 button.find-rides .fa-location-arrow{
-    transition:800ms ease all;
+    transition:100ms ease all;
 }
 button.find-rides:hover .fa-location-arrow{
-    transform: rotate(45deg);
+
+    -webkit-transform: translate(160px, 0px) rotate(45deg);
+    -moz-transform: translate(160px, 0px) rotate(45deg);
+    -o-transform: translate(160px, 0px) rotate(45deg);
+    -ms-transform: translate(160px, 0px) rotate(45deg);
+    transform: translate(160px, 0px) rotate(45deg);
+
 }
 button.find-rides:before,button.find-rides:after{
     content:'';
@@ -110,7 +121,7 @@ button.find-rides:before,button.find-rides:after{
     right:0;
     height:2px;
     width:0;
-    background: #1AAB8A;
+    background: #000000;
     transition:400ms ease all;
 }
 button.find-rides:after{
@@ -170,4 +181,25 @@ button.find-rides:hover:before,button.find-rides:hover:after{
     background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,0.85) 50%, rgba(209,209,209,0.85) 51%, rgba(254,254,254,0.7) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );
 
+}
+
+
+.app.input-group .input-group-addon
+{
+    background: #00000054;
+    color: white;
+    border-bottom: 1px solid #00000069 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.app.input-group .form-control
+{
+    background: #00000054;
+    color: white;
+    border-bottom: 1px solid #00000069 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
 }
