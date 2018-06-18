@@ -19,6 +19,8 @@ class RequestHandler extends BaseHelper
     }
 
     public function handleFormPost(  ){
+        // this is to check from where it is comming
+        // If Location
         if( isset( $_POST['Location'] ) ){
             $data = $this->getFindRidesModel()->handleFormPost();
             return $data;

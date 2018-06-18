@@ -21,13 +21,33 @@ class FindRidesModel extends FormModel
             if( $this->validateFromAttribute() ){
                 if( $this->validateToAttribute() ){
                     if( $this->processFromAttribute() ){
+                        $from_lat = GoogleLocationApi::$lat;
+                        $from_lng = GoogleLocationApi::$lng ;
                         if( $this->processToAttribute() ){
-
-                            $from_lat = GoogleLocationApi::$lat;
-                            $from_lng = GoogleLocationApi::$lng ;
                             $to_lat = GoogleLocationApi::$lat;
                             $to_lng = GoogleLocationApi::$lng ;
-                            $data = $this->getLyft()->getCost( $from_lat , $from_lng , $to_lat , $to_lng );
+
+                            // LYFT
+                            //$data = $this->getLyft()->getCost( $from_lat , $from_lng , $to_lat , $to_lng );
+
+                            // call uber
+                            $data = $this->getUber()->getEstimates();
+                            $this->printR( $data );
+
+                            // call ttc
+                            // whatever from is selected
+                            // db will have table name stops
+                            // there will be stopId for API and stopName , Lat and longitude from google Api
+                            //
+                            // TTC is not allwoing from and to based API for lat and long
+                            //
+                            //$data = $this->getTtc()->getCarsByStopId( 8456 );
+                            //$this->printR( $data );
+
+
+                            // merge data of all
+                            // contentagregattor which provides facility of filter and sort data
+
                             return $data;
 
                         }
@@ -38,24 +58,30 @@ class FindRidesModel extends FormModel
         return false;
     }
 
+    /**
+     * @return bool
+     */
     public function validateFromAttribute(){
         if( !isset( $_POST[$this->modelName ]['from'] ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_NOT_DEFINED );
+            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_NOT_DEFINED.__CLASS__.">".__LINE__ );
             return false;
         }else if( empty( $_POST[$this->modelName ]['from'] ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_IS_EMPTY );
+            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_IS_EMPTY.__CLASS__.">".__LINE__ );
             return false;
         }
         self::$from =  $_POST[$this->modelName ]['from'];
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function validateToAttribute(){
         if( !isset( $_POST[$this->modelName ]['to'] ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::TO_NOT_DEFINED );
+            $this->setErrorInErrorArray(ErrorMessageHelper::TO_NOT_DEFINED.__CLASS__.">".__LINE__ );
             return false;
         }else if( empty( $_POST[$this->modelName ]['to'] ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::TO_IS_EMPTY );
+            $this->setErrorInErrorArray(ErrorMessageHelper::TO_IS_EMPTY.__CLASS__.">".__LINE__ );
             return false;
         }
         self::$to =  $_POST[$this->modelName ]['to'];
@@ -67,7 +93,7 @@ class FindRidesModel extends FormModel
         $from_lat = GoogleLocationApi::$lat;
         $from_lng = GoogleLocationApi::$lng ;
         if( empty( $from_lat ) || empty( $from_lng ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_IS_EMPTY );
+            $this->setErrorInErrorArray(ErrorMessageHelper::FROM_IS_EMPTY.__CLASS__.">".__LINE__ );
             return false;
         }
         return true;
@@ -78,7 +104,7 @@ class FindRidesModel extends FormModel
         $to_lat = GoogleLocationApi::$lat;
         $to_lng = GoogleLocationApi::$lng ;
         if( empty( $to_lat ) || empty( $to_lng ) ){
-            $this->setErrorInErrorArray(ErrorMessageHelper::TO_IS_EMPTY );
+            $this->setErrorInErrorArray(ErrorMessageHelper::TO_IS_EMPTY.__CLASS__.">".__LINE__ );
             return false;
         }
         return true;

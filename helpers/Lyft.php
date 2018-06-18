@@ -96,6 +96,7 @@ class Lyft extends BaseHelper
         $accessToken = $this->getAccessToken();
         return [
             'headers'=>[
+                // to get data from API in json
                 'Content-Type'=>'application/json',
                 'Authorization'=>'Bearer '.$accessToken
             ]
@@ -125,6 +126,7 @@ class Lyft extends BaseHelper
             if( $request->getStatusCode() == 200 ){
                 $data = $request->getBody()->getContents();
                 $data = $this->parseToArray( $data );
+                $this->printR( $data );
                 $data = ArrayHelper::getValue( $data , 'cost_estimates' );
                 return $data;
             }else{

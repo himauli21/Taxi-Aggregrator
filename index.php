@@ -5,10 +5,15 @@ require 'base.php';
 use helpers\BaseHelper;
 
 $baseHelper = new BaseHelper();
+
+$data = $baseHelper->getUber()->getUberFirst();
+$this->printR( $data );
+
+
 $data = [];
 $msg = null;
 try{
-    //$data = $baseHelper->getRequestHandler()->handleRequest();
+    $data = $baseHelper->getRequestHandler()->handleRequest();
 }catch (Exception $e){
     $msg = $e->getTraceAsString();
 }
@@ -16,7 +21,7 @@ try{
 $from = \helpers\FindRidesModel::$from;
 $to = \helpers\FindRidesModel::$to;
 
-$baseHelper->printErrorArray()
+$baseHelper->printErrorArray();
 
 
 ?>
@@ -36,8 +41,9 @@ $baseHelper->printErrorArray()
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <link rel="stylesheet" href="assets/boxmodel.css">
-    <link rel="stylesheet" href="assets/font.css">
+    <link rel="stylesheet" href="assets/font.css">x
     <link rel="stylesheet" href="assets/media.css">
+
     <link rel="stylesheet" href="assets/style.css">
 
 </head>
@@ -118,6 +124,7 @@ $baseHelper->printErrorArray()
             </form>
 
         </div>
+
         <?php if( $data !== false && is_array( $data ) && !empty( $data ) ){ ?>
             <hr>
             <?php
@@ -137,9 +144,9 @@ $baseHelper->printErrorArray()
                                    </div>
                                    <div class="col-xs-12 col-sm-7 text-left">
                                        <h4><?= $value['display_name']; ?></h4>
-                                       <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']; ?>-<?= $value['estimated_cost_cents_max']; ?>&nbsp;<?= $value['currency']; ?></p>
+                                       <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']/100; ?>-<?= $value['estimated_cost_cents_max']/100; ?>&nbsp;<?= $value['currency']; ?></p>
                                        <p>Distance:&nbsp;<?= $value['estimated_distance_miles']; ?>&nbsp;Miles</p>
-                                       <p><i class="fas fa-clock"></i>&nbsp;<?= $value['estimated_duration_seconds']; ?>&nbsp;seconds</p>
+                                       <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['estimated_duration_seconds']); ?></p>
                                    </div>
                                </div>
                            </div>
@@ -154,6 +161,7 @@ $baseHelper->printErrorArray()
                }
             ?>
         <?php } ?>
+
     </section>
 </div>
 
