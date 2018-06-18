@@ -6,10 +6,6 @@ use helpers\BaseHelper;
 
 $baseHelper = new BaseHelper();
 
-$data = $baseHelper->getUber()->getUberFirst();
-$this->printR( $data );
-
-
 $data = [];
 $msg = null;
 try{
@@ -128,37 +124,81 @@ $baseHelper->printErrorArray();
         <?php if( $data !== false && is_array( $data ) && !empty( $data ) ){ ?>
             <hr>
             <?php
-               for( $i = 0 ; $i < sizeof( $data ); $i++ ){
-                   $value = $data[$i];
-                   if( $i%2 == 0 ){
-                     ?>
-                       <div class="row">
-                     <?php
-                   }
-                   ?>
-                       <div class="col-xs-12 col-sm-6 mb10 item-box-parent <?= $value['ride_type']; ?> " >
-                           <div class=" item-box ">
-                               <div class="row">
-                                   <div class="col-xs-12 col-sm-5 text-center">
-                                       <i class="fab fa-lyft " style="font-size:150px;color: white;" ></i>
-                                   </div>
-                                   <div class="col-xs-12 col-sm-7 text-left">
-                                       <h4><?= $value['display_name']; ?></h4>
-                                       <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']/100; ?>-<?= $value['estimated_cost_cents_max']/100; ?>&nbsp;<?= $value['currency']; ?></p>
-                                       <p>Distance:&nbsp;<?= $value['estimated_distance_miles']; ?>&nbsp;Miles</p>
-                                       <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['estimated_duration_seconds']); ?></p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
 
-                   <?php
-                   if( $i%2 == 1  || $i == sizeof( $data )-1 ){
-                   ?>
-                        </div>
-                    <?php
+            if(isset( $data['lyft'] ) && !empty( $data['lyft'] ) ){
+                $lyfts = $data['lyft'];
+
+                for( $i = 0 ; $i < sizeof( $lyfts ); $i++ ){
+                    $value = $lyfts[$i];
+                    if( $i%2 == 0 ){
+                        ?>
+                        <div class="row">
+                        <?php
                     }
-               }
+                    ?>
+                    <div class="col-xs-12 col-sm-6 mb10 item-box-parent <?= $value['ride_type']; ?> " >
+                        <div class=" item-box ">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-5 text-center">
+                                    <i class="fab fa-lyft " style="font-size:150px;color: white;" ></i>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 text-left">
+                                    <h4><?= $value['display_name']; ?></h4>
+                                    <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']/100; ?>-<?= $value['estimated_cost_cents_max']/100; ?>&nbsp;<?= $value['currency']; ?></p>
+                                    <p>Distance:&nbsp;<?= $value['estimated_distance_miles']; ?>&nbsp;Miles</p>
+                                    <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['estimated_duration_seconds']); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                    if( $i%2 == 1  || $i == sizeof( $lyfts )-1 ){
+                        ?>
+                        </div>
+                        <?php
+                    }
+                }
+
+            }
+
+            if(isset( $data['uber'] ) && !empty( $data['uber'] ) ){
+                $ubers = $data['uber'];
+
+                for( $i = 0 ; $i < sizeof( $ubers ); $i++ ){
+                    $value = $ubers[$i];
+                    if( $i%2 == 0 ){
+                        ?>
+                        <div class="row">
+                        <?php
+                    }
+                    ?>
+                    <div class="col-xs-12 col-sm-6 mb10 item-box-parent <?= $value['ride_type']; ?> " >
+                        <div class=" item-box ">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-5 text-center">
+                                    <i class="fab fa-lyft " style="font-size:150px;color: white;" ></i>
+                                </div>
+                                <div class="col-xs-12 col-sm-7 text-left">
+                                    <h4><?= $value['display_name']; ?></h4>
+                                    <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']/100; ?>-<?= $value['estimated_cost_cents_max']/100; ?>&nbsp;<?= $value['currency']; ?></p>
+                                    <p>Distance:&nbsp;<?= $value['estimated_distance_miles']; ?>&nbsp;Miles</p>
+                                    <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['estimated_duration_seconds']); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php
+                    if( $i%2 == 1  || $i == sizeof( $ubers )-1 ){
+                        ?>
+                        </div>
+                        <?php
+                    }
+                }
+
+            }
+
             ?>
         <?php } ?>
 

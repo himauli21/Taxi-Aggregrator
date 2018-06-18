@@ -27,12 +27,15 @@ class FindRidesModel extends FormModel
                             $to_lat = GoogleLocationApi::$lat;
                             $to_lng = GoogleLocationApi::$lng ;
 
+                            $data = [];
                             // LYFT
-                            //$data = $this->getLyft()->getCost( $from_lat , $from_lng , $to_lat , $to_lng );
+                            $lyft = $this->getLyft()->getCost( $from_lat , $from_lng , $to_lat , $to_lng );
+                            $data['lyft'] = $lyft;
 
                             // call uber
-                            $data = $this->getUber()->getEstimates();
-                            $this->printR( $data );
+                            $uber = $this->getUber()->getEstimates();
+                            $data['uber'] = $uber;
+                            //$this->printR( $data );
 
                             // call ttc
                             // whatever from is selected
@@ -41,9 +44,8 @@ class FindRidesModel extends FormModel
                             //
                             // TTC is not allwoing from and to based API for lat and long
                             //
-                            //$data = $this->getTtc()->getCarsByStopId( 8456 );
-                            //$this->printR( $data );
-
+                            //$ttc = $this->getTtc()->getCarsByStopId( 8456 );
+                            // $data['ttc'] = $ttc;
 
                             // merge data of all
                             // contentagregattor which provides facility of filter and sort data
