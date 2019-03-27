@@ -173,17 +173,17 @@ $baseHelper->printErrorArray();
                         <?php
                     }
                     ?>
-                    <div class="col-xs-12 col-sm-6 mb10 item-box-parent <?= $value['ride_type']; ?> " >
+                    <div class="col-xs-12 col-sm-6 mb10 item-box-parent <?= $value['localized_display_name']; ?> " >
                         <div class=" item-box ">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5 text-center">
-                                    <i class="fab fa-lyft " style="font-size:150px;color: white;" ></i>
+                                    <i class="fab fa-uber " style="font-size:150px;color: white;" ></i>
                                 </div>
                                 <div class="col-xs-12 col-sm-7 text-left">
                                     <h4><?= $value['display_name']; ?></h4>
-                                    <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['estimated_cost_cents_min']/100; ?>-<?= $value['estimated_cost_cents_max']/100; ?>&nbsp;<?= $value['currency']; ?></p>
-                                    <p>Distance:&nbsp;<?= $value['estimated_distance_miles']; ?>&nbsp;Miles</p>
-                                    <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['estimated_duration_seconds']); ?></p>
+                                    <p><i class="fas fa-dollar-sign"></i>&nbsp;<?= $value['low_estimate']; ?>-<?= $value['high_estimate']; ?>&nbsp;<?= $value['currency']; ?></p>
+                                    <p>Distance:&nbsp;<?= $value['distance']; ?>&nbsp;Miles</p>
+                                    <p><i class="fas fa-clock"></i>&nbsp;<?= gmdate("H:i:s",$value['duration']); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -199,13 +199,52 @@ $baseHelper->printErrorArray();
 
             }
 
+
+//            if(isset( $data['ttc'] ) && !empty( $data['ttc'] ) ){
+//                $ttc = $data['ttc'];
+//
+//                for( $i = 0 ; $i < sizeof( $ubers ); $i++ ){
+//                    $value = $ubers[$i];
+//                    if( $i%2 == 0 ){
+//                        ?>
+<!--                        <div class="row">-->
+<!--                        --><?php
+//                    }
+//                    ?>
+<!--                    <div class="col-xs-12 col-sm-6 mb10 item-box-parent --><?//= $value['agencyTitle']; ?><!-- " >-->
+<!--                        <div class=" item-box ">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-xs-12 col-sm-5 text-center">-->
+<!--                                    <i class="fab fa-bus " style="font-size:150px;color: white;" ></i>-->
+<!--                                </div>-->
+<!--                                <div class="col-xs-12 col-sm-7 text-left">-->
+<!--                                    <h4>--><?//= $value['display_name']; ?><!--</h4>-->
+<!--                                    <p><i class="fas fa-dollar-sign"></i>&nbsp;--><?//= $value['low_estimate']; ?><!-----><?//= $value['high_estimate']; ?><!--&nbsp;--><?//= $value['currency']; ?><!--</p>-->
+<!--                                    <p>Distance:&nbsp;--><?//= $value['distance']; ?><!--&nbsp;Miles</p>-->
+<!--                                    <p><i class="fas fa-clock"></i>&nbsp;--><?//= gmdate("H:i:s",$value['duration']); ?><!--</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!--                    --><?php
+//                    if( $i%2 == 1  || $i == sizeof( $ttc )-1 ){
+//                        ?>
+<!--                        </div>-->
+<!--                        --><?php
+//                    }
+//                }
+//
+//            }
+
+
             ?>
         <?php } ?>
 
     </section>
 </div>
 
-<!-- GOOD PRACTICE PUT JS AT END -->
+<!-- JS AT END -->
 <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

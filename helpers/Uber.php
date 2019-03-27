@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jaimin
+ * User: Himauli
  * Date: 10/06/18
  * Time: 10:16 PM
  */
@@ -30,17 +30,22 @@ class Uber extends BaseHelper
         }
     }
 
-    public function getEstimates(){
+    public function getEstimates( $from_lat , $from_lng , $to_lat , $to_lng ){
         if( empty( self::$client ) ){
             $this->getClient();
         }
         if( !empty( self::$client ) ){
-            return self::$client->getPriceEstimates(array(
-                'start_latitude' => '43.763486600',
-                'start_longitude' => '-79.345983600',
-                'end_latitude' => '43.725925100',
-                'end_longitude' => '-79.448583200'
+            $estimates = self::$client->getPriceEstimates(array(
+                'start_latitude' => $from_lat,
+                'start_longitude' => $from_lng,
+                'end_latitude' => $to_lat,
+                'end_longitude' => $to_lng
             ));
+            $estimates = json_encode($estimates);
+            $estimates =  $this->parseToArray($estimates);
+
+            $estimates = ArrayHelper::getValue($estimates,"prices");
+            return $estimates;
         }else{
             $this->printR( "Not able to connect to Uber APi" );
         }

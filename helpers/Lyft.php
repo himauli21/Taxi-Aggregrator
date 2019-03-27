@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jaimin
+ * User: Himauli
  * Date: 10/06/18
  * Time: 10:16 PM
  */
@@ -126,7 +126,7 @@ class Lyft extends BaseHelper
             if( $request->getStatusCode() == 200 ){
                 $data = $request->getBody()->getContents();
                 $data = $this->parseToArray( $data );
-                $this->printR( $data );
+                //$this->printR( $data );
                 $data = ArrayHelper::getValue( $data , 'cost_estimates' );
                 return $data;
             }else{

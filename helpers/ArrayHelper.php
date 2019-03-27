@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jaimin
+ * User: Himauli
  * Date: 10/06/18
  * Time: 10:04 PM
  */
@@ -11,6 +11,8 @@ namespace helpers;
 
 use helpers\Arrayable;
 use Exception;
+
+// code found from github as ArrayHelper - getValue
 
 class ArrayHelper extends BaseHelper
 {

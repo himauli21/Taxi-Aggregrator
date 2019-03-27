@@ -4,12 +4,13 @@
  * Here is an example of how to use Backstretch as a slideshow.
  * Just pass in an array of images, and optionally a duration and fade value.
  */
-
+// a simple jQuery plugin that allows to add a dynamically-resized, slideshow-capable background image to any page or element
 // Duration is the amount of time in between slides,
 // and fade is value that determines how quickly the next image will fade in
 $.backstretch([
     "assets/images/1.jpg"
     , "assets/images/2.jpg"
+    , "assets/images/3.jpg"
 ], {duration: 15000, fade: 5000});
 
 
@@ -35,6 +36,8 @@ function hideLoadingBar()
 var map, infoWindow;
 function initMap() {
 
+    // places api
+
     var options = {
         componentRestrictions: {country: "ca"}
     };
@@ -45,7 +48,8 @@ function initMap() {
     new google.maps.places.Autocomplete(ac_inputs2, options);
 
     if( ac_inputs.value == "" || ac_inputs.value == null ){
-        // Try HTML5 geolocation.
+        //  HTML5 geolocation.
+        // geolocation api - gets location based on wi-fi[internet] network
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
@@ -74,7 +78,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-function displayLocation(latitude,longitude){
+function displayLocation(latitude,longitude)
+{
     var request = new XMLHttpRequest();
 
     var method = 'GET';
@@ -83,6 +88,9 @@ function displayLocation(latitude,longitude){
 
     request.open(method, url, async);
     request.onreadystatechange = function(){
+
+        //http status code - 200
+
         if(request.readyState == 4 && request.status == 200){
             var data = JSON.parse(request.responseText);
             var address = data.results[0];
@@ -121,6 +129,8 @@ var options = {
     maximumAge: 0
 };
 
+// prevent from enter button submission
+// while selecting location in from and to
 $(document).ready(function() {
     $(window).keydown(function(event){
         if(event.keyCode == 13) {

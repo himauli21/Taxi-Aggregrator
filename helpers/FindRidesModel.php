@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Jaimin
+ * User: Himauli
  * Date: 16/06/18
  * Time: 1:02 PM
  */
@@ -33,9 +33,10 @@ class FindRidesModel extends FormModel
                             $data['lyft'] = $lyft;
 
                             // call uber
-                            $uber = $this->getUber()->getEstimates();
+                            $uber = $this->getUber()->getEstimates( $from_lat , $from_lng , $to_lat , $to_lng );
                             $data['uber'] = $uber;
-                            //$this->printR( $data );
+                            //$this->printR( $uber );
+                            //exit;
 
                             // call ttc
                             // whatever from is selected
@@ -44,8 +45,9 @@ class FindRidesModel extends FormModel
                             //
                             // TTC is not allwoing from and to based API for lat and long
                             //
-                            //$ttc = $this->getTtc()->getCarsByStopId( 8456 );
-                            // $data['ttc'] = $ttc;
+//                            $ttc = $this->getTtc()->getCarsByStopId( 8456 );
+//                            $this->printR($ttc);
+//                             $data['ttc'] = $ttc;
 
                             // merge data of all
                             // contentagregattor which provides facility of filter and sort data
@@ -101,7 +103,8 @@ class FindRidesModel extends FormModel
         return true;
     }
 
-    public function processToAttribute(){
+    public function
+    processToAttribute(){
         $to_lat_lang = $this->getGoogleLocationApi()->getLatAndLongByAddress(  self::$to  );
         $to_lat = GoogleLocationApi::$lat;
         $to_lng = GoogleLocationApi::$lng ;
